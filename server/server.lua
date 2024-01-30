@@ -41,6 +41,8 @@ function AddCall(src, message, number, coords)
                         return
                     end
                     playerCoords = vector3(coords.x, coords.y, coords.z)
+                elseif type(coords) == "vector3" then
+                    playerCoords = coords
                 else
                     print("Fejl: Ugyldige koordinater, brug vector3(x, y, z) eller {x = 0, y = 0, z = 0}")
                 end
