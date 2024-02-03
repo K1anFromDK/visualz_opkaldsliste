@@ -1,5 +1,5 @@
 function GetPhoneNumber(identifier)
-    local result = MySQL.Sync.fetchAll("SELECT users.phone_number FROM users WHERE users.identifier = @identifier", {
+    local result = MySQL.Sync.fetchAll("SELECT phone_phones.phone_number FROM phone_phones WHERE phone_phones.id = @identifier", {
         ['@identifier'] = identifier
     })
     if result[1] ~= nil then
@@ -8,18 +8,14 @@ function GetPhoneNumber(identifier)
     return nil
 end
 
-function SendTakenMessage(identifier, number, fromnumber, xPlayer)
-    TriggerEvent('gcPhone:_internalAddMessage', number, fromnumber, Config.TakeCall, 0, function(smsMess)
-        TriggerClientEvent('gcPhone:receiveMessage', xPlayer.source, smsMess)
-    end)
+function SendTakenMessage(identifier, number,fromnumber, xPlayer)
+    exports["lb-phone"]:SendMessage(number, fromnumber, Config.takecall)
 end
 
-function SendCallMessage(identifier, number, fromnumber, message)
+function SendCallMessage(identifier, number, fromnumber, message, xPlayer)
     local xPlayer = ESX.GetPlayerFromIdentifier(identifier)
     if xPlayer == nil then return end
-    TriggerEvent('gcPhone:_internalAddMessage', number, fromnumber, message, 0, function(smsMess)
-        TriggerClientEvent('gcPhone:receiveMessage', xPlayer.source, smsMess)
-    end)
+    exports["lb-phone"]:SendMessage(number, fromnumber, message)
 end
 
 function GetPlayer(source)
