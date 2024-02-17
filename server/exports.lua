@@ -8,7 +8,7 @@ function GetPhoneNumber(identifier)
     return nil
 end
 
-function SendTakenMessage(identifier, number,fromnumber, xPlayer)
+function SendTakenMessage(identifier, number, fromnumber, xPlayer)
     exports["lb-phone"]:SendMessage(number, fromnumber, Config.takecall)
 end
 
@@ -20,16 +20,19 @@ end
 
 function GetPlayer(source)
     local xPlayer = ESX.GetPlayerFromId(source)
+    if xPlayer == nil then return end
     return xPlayer
 end
 
 function GetIdentifier(source)
     local xPlayer = ESX.GetPlayerFromId(source)
+    if xPlayer == nil then return end
     return xPlayer.identifier
 end
 
 function GetPlayerFromIdentifier(identifier)
     local xPlayer = ESX.GetPlayerFromIdentifier(identifier)
+    if xPlayer == nil then return end
     return xPlayer
 end
 
