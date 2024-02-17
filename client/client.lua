@@ -5,10 +5,14 @@ local ui = false;
 local ready = false;
 local identifier = nil;
 
-CreateThread(function()
-  cCallback:TriggerServerCallback("visualz_opkaldsliste:loadIdentifier", function(identifierCall)
-    identifier = identifierCall
-  end, null) 
+
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded', function(xPlayer, isNew, skin)
+  CreateThread(function()
+    cCallback:TriggerServerCallback("visualz_opkaldsliste:loadIdentifier", function(identifierCall)
+      identifier = identifierCall
+    end, null)
+  end)
 end)
 
 -- -------------------------------------------------------------------------- --
