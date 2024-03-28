@@ -56,9 +56,9 @@ end
 
 
 -- -- Test call
--- RegisterCommand('test_call', function(src, args)
---     AddCall(d, "Test call! Skynd jer!", "police", { x = 0, z = 0, y = 0 })
--- end, false)
+RegisterCommand('test_call', function(src, args)
+    AddCall(d, "Test call! Skynd jer!", "police", { x = 0, z = 0, y = 0 })
+end, false)
 
 
 -- -------------------------------------------------------------------------- --
@@ -190,12 +190,11 @@ end)
 -- -------------------------------------------------------------------------- --
 --                               ServerCallbacks                              --
 -- -------------------------------------------------------------------------- --
-
-sCallback:RegisterServerCallback("visualz_opkaldsliste:loadCalls", function(number)
+lib.callback.register("visualz_opkaldsliste:loadCalls", function(source, number)
     return calls[number]
 end)
 
-sCallback:RegisterServerCallback("visualz_opkaldsliste:loadIdentifier", function()
+lib.callback.register("visualz_opkaldsliste:loadIdentifier", function()
     return GetIdentifier(source)
 end)
 

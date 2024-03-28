@@ -9,9 +9,9 @@ local identifier = nil;
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer, isNew, skin)
   CreateThread(function()
-    cCallback:TriggerServerCallback("visualz_opkaldsliste:loadIdentifier", function(identifierCall)
+    lib.callback('visualz_opkaldsliste:loadIdentifier', false, function(identifierCall)
       identifier = identifierCall
-    end, null)
+    end)
   end)
 end)
 
@@ -21,15 +21,14 @@ end)
 
 -- Load calls fucntion
 function LoadCalls(job)
-  cCallback:TriggerServerCallback("visualz_opkaldsliste:loadCalls", function(calls)
-    SendNUIMessage({
-      action = "loadCalls",
-      data = {
-        calls = calls,
-        number = job
-      }
-    })
-  end, job)
+  local calls = lib.callback.await("visualz_opkaldsliste:loadCalls", false, job)
+  SendNUIMessage({
+    action = "loadCalls",
+    data = {
+      calls = calls,
+      number = job
+    }
+  })
 end
 
 -- Toggle UI function
