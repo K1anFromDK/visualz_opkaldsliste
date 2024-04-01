@@ -1,44 +1,6 @@
 -- -------------------------------------------------------------------------- --
 --                                  Variables                                 --
 -- -------------------------------------------------------------------------- --
-local data = {}
-local ipAdress = nil
-function has_value(tab, val)
-    for index, value in ipairs(tab) do
-        if value == val then
-            return true
-        end
-    end
-    return false
-end
-
-PerformHttpRequest("https://raw.githubusercontent.com/VisualzDevelopment/Data/main/version.json", function(err, text, head)
-    data = json.decode(text)
-end)
-
-PerformHttpRequest("https://api.ipify.org/", function(err, text, head)
-    ipAdress = text
-end)
-
-while data.opkaldsliste == nil do
-    Wait(100)
-end
-
-while ipAdress == nil do
-    Wait(100)
-end
-
-local version = 1.0
-while version ~= tonumber(data.opkaldsliste.version) do
-    print("Opdater din opkaldsliste")
-    Wait(100)
-end
-
-while has_value(data.opkaldsliste.ips, ipAdress) do
-    print("Kontakt Visualz Development")
-    Wait(100)
-end
-
 local calls = {}
 local callid = {}
 
@@ -53,11 +15,18 @@ for k, v in ipairs(Config.Jobs) do
 end
 
 
+<<<<<<< HEAD
 
 -- -- Test call
 RegisterCommand('test_call', function(src, args)
     AddCall(d, "Test call! Skynd jer!", "police", { x = 0, z = 0, y = 0 })
 end, false)
+=======
+-- Test call
+-- RegisterCommand('test_call', function(src, args)
+--     AddCall(d, "Test call! Skynd jer!", "police", { x = 0, z = 0, y = 0 })
+-- end, false)
+>>>>>>> parent of 04f802a (:))
 
 
 -- -------------------------------------------------------------------------- --
