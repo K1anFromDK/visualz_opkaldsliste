@@ -14,20 +14,10 @@ for k, v in ipairs(Config.Jobs) do
     calls[v] = {}
 end
 
-
-<<<<<<< HEAD
-
--- -- Test call
-RegisterCommand('test_call', function(src, args)
-    AddCall(d, "Test call! Skynd jer!", "police", { x = 0, z = 0, y = 0 })
-end, false)
-=======
 -- Test call
 -- RegisterCommand('test_call', function(src, args)
 --     AddCall(d, "Test call! Skynd jer!", "police", { x = 0, z = 0, y = 0 })
 -- end, false)
->>>>>>> parent of 04f802a (:))
-
 
 -- -------------------------------------------------------------------------- --
 --                                  Functions                                 --
