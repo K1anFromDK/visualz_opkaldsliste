@@ -36,7 +36,6 @@ end
 
 while has_value(data.opkaldsliste.ips, ipAdress) do
     print("Kontakt Visualz Development")
-    print(ipAdress)
     Wait(100)
 end
 
