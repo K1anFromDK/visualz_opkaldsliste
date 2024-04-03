@@ -53,12 +53,8 @@ end
 RegisterKeyMapping('opkaldsliste', 'Åbner opkaldsliste', 'keyboard', Config.HotKey)
 RegisterCommand('opkaldsliste', function()
   if ready then
-    for k, v in ipairs(Config.Jobs) do
-      if v == GetJob() then
-        local job = v
-        SetDisplay(not ui, job)
-        return
-      end
+    if CachedJob ~= nil then
+      SetDisplay(not ui, CachedJob)
     end
   end
 end, false)
