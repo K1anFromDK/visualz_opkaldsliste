@@ -1,10 +1,10 @@
 CachedJob = nil
 
 
-RegisterNetEvent('esx:playerLoaded')
-AddEventHandler('esx:playerLoaded', function(xPlayer)
-    ESX.PlayerData = xPlayer
-    ESX.PlayerLoaded = true
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
+AddEventHandler('QBCore:Client:OnPlayerLoaded', function(xPlayer)
+    PlayerData = xPlayer
+    PlayerLoaded = true
     local Job = GetJob()
     for k, v in ipairs(Config.Jobs) do
         if v == Job then
@@ -15,15 +15,15 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
     end
 end)
 
-RegisterNetEvent('esx:onPlayerLogout')
-AddEventHandler('esx:onPlayerLogout', function()
-    ESX.PlayerLoaded = false
-    ESX.PlayerData = {}
+RegisterNetEvent('QBCore:Client:OnPlayerUnload')
+AddEventHandler('QBCore:Client:OnPlayerUnload', function()
+    PlayerLoaded = false
+    PlayerData = {}
     CachedJob = nil
 end)
 
-RegisterNetEvent("esx:setJob")
-AddEventHandler("esx:setJob", function(job)
+RegisterNetEvent("QBCore:Client:OnJobUpdate")
+AddEventHandler("QBCore:Client:OnJobUpdate", function(job)
     local found = false
     for _, v in ipairs(Config.Jobs) do
         if v == job.name then
@@ -39,5 +39,6 @@ AddEventHandler("esx:setJob", function(job)
 end)
 
 function GetJob()
-    return ESX.PlayerData.job.name
+    local player = QBCore.functions.GetPlayer()
+    return Player.PlayerData.job.name
 end

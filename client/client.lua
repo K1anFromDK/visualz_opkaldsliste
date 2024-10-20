@@ -1,13 +1,14 @@
 -- -------------------------------------------------------------------------- --
 --                                  Variables                                 --
 -- -------------------------------------------------------------------------- --
+local QBCore = exports['qb-core']:GetCoreObject()
 local ui = false;
 local ready = false;
 local identifier = nil;
 
 
-RegisterNetEvent('esx:playerLoaded')
-AddEventHandler('esx:playerLoaded', function(xPlayer, isNew, skin)
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded')
+AddEventHandler('QBCore:Client:OnPlayerLoaded', function(xPlayer, isNew, skin)
   CreateThread(function()
     lib.callback('visualz_opkaldsliste:loadIdentifier', false, function(identifierCall)
       identifier = identifierCall
