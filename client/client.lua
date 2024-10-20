@@ -2,6 +2,7 @@
 --                                  Variables                                 --
 -- -------------------------------------------------------------------------- --
 local QBCore = exports['qb-core']:GetCoreObject()
+local PlayerData = QBCore.Functions.GetPlayerData()
 local ui = false;
 local ready = false;
 local identifier = nil;
